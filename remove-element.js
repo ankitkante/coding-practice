@@ -4,28 +4,16 @@
  * @return {number}
  */
 var removeElement = function (nums, val) {
-    let k = 0;
-    let leftIndex = 0,
-        rightIndex = nums.length - 1;
-    while (leftIndex < rightIndex) {
-        const elem = nums[leftIndex];
-        if (elem == val) {
-            nums[leftIndex] = nums[rightIndex];
-            nums[rightIndex] = -1;
-            rightIndex--;
-        } else {
-            k++;
-            leftIndex++;
+    let validItemIndex = 0
+    for(let i=0; i<nums.length;i++){
+        const elem = nums[i]
+        if(elem != val){
+            nums[validItemIndex] = elem
+            validItemIndex++
         }
     }
 
-    if (nums[leftIndex] == val) {
-        nums[leftIndex] = -1
-    } else {
-        k = k+ 1
-    }
-
-    return k;
+    return validItemIndex;
 };
 
 nums = [0,1,2,2,3,0,4,2]
