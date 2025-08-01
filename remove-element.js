@@ -22,7 +22,7 @@ var removeElement = function (nums, val) {
     if (nums[leftIndex] == val) {
         nums[leftIndex] = -1
     } else {
-        k + 1
+        k = k+ 1
     }
 
     return k;
