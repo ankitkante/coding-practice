@@ -6,46 +6,37 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-    recursiveFn(nums1, m, nums2, n, 0, 0)
-}
-
-var recursiveFn = function (nums1, m, nums2, n, currentPointer, index2) {
-    if (index2 >= n) {
-        return
-    }
-
-    const item1 = nums1[currentPointer]
-    const previousItem = nums1[currentPointer - 1]
-    const item2 = nums2[index2]
-
-    if (item1 == 0 && (previousItem && previousItem > 0)) {
-        // Empty slots reached. Just put the items in nums1
-        nums1[currentPointer] = item2
-        recursiveFn(nums1, m, nums2, n, ++currentPointer, ++index2)
-
-    } else {
-        if (item1 <= item2) {
-            recursiveFn(nums1, m, nums2, n, ++currentPointer, index2)
+    let finalIndex = m + n -1
+    let index1 = m - 1
+    let index2 = n - 1
+    while(index1 >= 0 && index2 >= 0){
+        const item1 = nums1[index1]
+        const item2 = nums2[index2]
+        if(item1 > item2){
+            nums1[finalIndex] = item1
+            index1--;
+            finalIndex--;
         } else {
-            shift(nums1, currentPointer, index2, m)
-            nums1[currentPointer] = item2
-            recursiveFn(nums1, m, nums2, n, currentPointer, ++index2)
+            nums1[finalIndex] = item2
+            index2--;
+            finalIndex--
         }
     }
 
-}
-
-var shift = function (arr, startIndex, offset, m) {
-    const endIndex = m + offset + 1
-    for (let index = endIndex; index >= startIndex; index--) {
-        arr[index] = arr[index - 1]
+    for(let index = index1; index >=0; index--, finalIndex--){
+        nums1[finalIndex] = nums1[index]
+    }
+    for(let index = index2; index >=0; index--, finalIndex--){
+        nums1[finalIndex] = nums2[index]
     }
 }
 
+
+
 arr1 = [0]
-arr1Len = 3
+arr1Len = 0
 arr2 = [1]
-arr2Len = 3
+arr2Len = 1
 
 merge(arr1, arr1Len, arr2, arr2Len)
 console.log(arr1)
