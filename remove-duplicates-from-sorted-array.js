@@ -4,20 +4,12 @@
  */
 var removeDuplicates = function (nums) {
     let currentElem = nums[0]
+    let anchor = 1
+
     for (let i = 1; i < nums.length; i++) {
         const elem = nums[i]
-        if (elem === currentElem) {
-            nums[i] = -1000
-        } else {
+        if (elem !== currentElem) {
             currentElem  = elem
-        }
-        // console.log(nums)
-    }
-
-    let anchor = 1
-    for (let j = 1; j < nums.length; j++) {
-        const elem = nums[j]
-        if (elem !== -1000) {
             nums[anchor] = elem
             anchor++
         }
