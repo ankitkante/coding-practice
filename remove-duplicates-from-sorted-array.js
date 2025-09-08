@@ -3,16 +3,13 @@
  * @return {number}
  */
 var removeDuplicates = function (nums) {
-    let uniqueIndex = 0
-    let uniqueList = [nums[0]]
+    let currentElem = nums[0]
     for (let i = 1; i < nums.length; i++) {
         const elem = nums[i]
-        const currentElem = uniqueList[uniqueIndex]
         if (elem === currentElem) {
             nums[i] = -1000
         } else {
-            uniqueIndex++
-            uniqueList[uniqueIndex] = elem
+            currentElem  = elem
         }
         // console.log(nums)
     }
@@ -26,7 +23,7 @@ var removeDuplicates = function (nums) {
         }
     }
 
-    return uniqueList.length
+    return anchor
 };
 
 nums = [-23, -23, -18, -15, -15, -5, -5, -5, 0, 0, 5, 5, 5, 5, 77, 77]
