@@ -3,12 +3,12 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
-    let maxProfit = 0, smallest = prices[0]
+    let maxProfit = 0, smallest = 0
     for(let i=1;i<prices.length;i++){
-        if(prices[i]< smallest){
-            smallest = prices[i]
+        if(prices[i]< prices[smallest]){
+            smallest = i
         }else {
-            diff = prices[i] - smallest
+            diff = prices[i] - prices[smallest]
             if(diff > maxProfit){
                 maxProfit = diff
             }
