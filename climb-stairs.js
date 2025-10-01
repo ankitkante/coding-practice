@@ -5,18 +5,20 @@
  * @return {number}
  */
 var climbStairs = function(n) {
-    let dp = new Array(n+1)
 
-    dp[0] = 1
-    dp[1] = 1
+    curr = 1
+    last = 1
+    secondLast = 1
 
     for(let i=2;i<=n;i++){
-        dp[i] = dp[i-1] + dp[i-2]
+        curr = last + secondLast
+        secondLast = last
+        last = curr
     }
 
-    return dp[n]
+    return curr
 };
 
 
-const n = 2
+const n = 3
 console.log(climbStairs(n))
