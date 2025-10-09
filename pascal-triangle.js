@@ -2,19 +2,46 @@
  * @param {number} numRows
  * @return {number[][]}
  */
-var generate = function(numRows) {
-    let result = [[1]]
-    for(let i=1;i<numRows;i++){
-        result[i] = []
-        result[i][0] = 1
-        result[i][i] = 1
-        for(j=1;j<=i-1;j++){
-            result[i][j] = result[i-1][j-1] + result[i-1][j]
-        }
+
+// Probably dynamic programming
+// var generate = function(numRows) {
+//     let result = [[1]]
+//     for(let i=1;i<numRows;i++){
+//         result[i] = []
+//         result[i][0] = 1
+//         result[i][i] = 1
+//         for(j=1;j<=i-1;j++){
+//             result[i][j] = result[i-1][j-1] + result[i-1][j]
+//         }
+//     }
+
+//     return result
+// };
+
+// Recursive with memoization
+var generate = function(numRows){
+    let memo = []
+    let result  = recur(numRows, memo)
+        memo.push(result)
+
+
+    return memo
+}
+
+var recur = function(numRows, memo){
+    if(numRows === 1) return [1]
+
+    const result = recur(numRows - 1, memo)
+    memo.push(result)
+    arr = []
+    arr[0] = 1
+    arr[numRows-1] = 1
+    for(let i=1;i<=numRows-2;i++){
+        arr[i] = result[i-1] + result[i]
     }
 
-    return result
-};
+    return arr
+}
 
 const n = 5
 console.log(generate(n))
