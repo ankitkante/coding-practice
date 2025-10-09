@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/pascals-triangle/?envType=problem-list-v2&envId=dynamic-programming
+
 /**
  * @param {number} numRows
  * @return {number[][]}
