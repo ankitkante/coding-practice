@@ -3,7 +3,7 @@
 
 var RandomizedSet = function() {
     this.set = {}
-
+    this.list = []
 };
 
 /** 
@@ -11,10 +11,11 @@ var RandomizedSet = function() {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function(val) {
-    if(Object.keys(this.set).includes(val.toString())){
+    if(this.set.hasOwnProperty(val)){
         return false
     } else {
-        this.set[val] = val
+        this.list.push(val)
+        this.set[val] = this.list.length-1
         return true
     }
 };
@@ -24,9 +25,15 @@ RandomizedSet.prototype.insert = function(val) {
  * @return {boolean}
  */
 RandomizedSet.prototype.remove = function(val) {
-    if(!Object.keys(this.set).includes(val.toString())){
+    if(!this.set.hasOwnProperty(val)){
         return false
     } else {
+        let lastIndex = this.list.length - 1
+        const lastItem = this.list[lastIndex]
+        const itemIndex = this.set[val]
+        this.list[itemIndex] = lastItem
+        this.set[lastItem] = itemIndex
+        this.list.pop()
         delete this.set[val]
         return true
     }
@@ -36,10 +43,9 @@ RandomizedSet.prototype.remove = function(val) {
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function() {
-    const list = Object.keys(this.set)
-    const randomIndex = Math.floor(Math.random() * list.length)
+    const randomIndex = Math.floor(Math.random() * this.list.length)
 
-    return this.set[list[randomIndex]]
+    return this.list[randomIndex]
 };
 
 /** 
