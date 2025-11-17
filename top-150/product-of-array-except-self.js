@@ -41,31 +41,49 @@ var productExceptSelf = function (nums) {
 
     // Approach 3: Prefix and Suffix multiplication
 
-    let leftProd = Array.from(nums, (x) => 1), prefix = 1
-    let rightProd = Array.from(nums, x => 1), suffix = 1
-    const n = nums.length
-    // Prefix multiply
-    for (let i = 1; i < nums.length; i++) {
-        leftProd[i] = nums[i-1] * leftProd[i - 1]
-    }
+    // let leftProd = Array.from(nums, (x) => 1), prefix = 1
+    // let rightProd = Array.from(nums, x => 1), suffix = 1
+    // const n = nums.length
+    // // Prefix multiply
+    // for (let i = 1; i < nums.length; i++) {
+    //     leftProd[i] = nums[i-1] * leftProd[i - 1]
+    // }
 
-    // Suffix multiply
-    for (i = n - 2; i >= 0; i--) {
-        rightProd[i] = nums[i+1] * rightProd[i + 1]
-    }
+    // // Suffix multiply
+    // for (i = n - 2; i >= 0; i--) {
+    //     rightProd[i] = nums[i+1] * rightProd[i + 1]
+    // }
 
-    console.log(leftProd)
-    console.log(rightProd)
+    // console.log(leftProd)
+    // console.log(rightProd)
 
-    let ans = Array.from(nums, (x) => 1)
-    for(let i=0;i<nums.length;i++){
-        ans[i] = leftProd[i] * rightProd[i]
-    }
+    // let ans = Array.from(nums, (x) => 1)
+    // for(let i=0;i<nums.length;i++){
+    //     ans[i] = leftProd[i] * rightProd[i]
+    // }
 
-    return ans
+    // return ans
 
     //Approach 4: Better usage of memory
-    
+    let ans = Array.from(nums, (x) => 1), left=1
+    const n = nums.length
+
+    for(let i=0;i<nums.length;i++){
+        ans[i] = ans[i] * left
+        left = left*nums[i]
+    }
+
+    console.log(ans)
+
+    let right = 1
+    for(let i=n-1;i>=0;i--){
+        ans[i] = ans[i] * right
+        right = right * nums[i]
+    }
+
+    console.log(ans)
+
+    return ans
 
 };
 
