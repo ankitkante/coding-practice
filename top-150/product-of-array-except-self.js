@@ -18,7 +18,27 @@ var productExceptSelf = function(nums) {
 
     // return result
 
-    // Approach 2: 
+    // Approach 2: Matrix multiplication (LEft incomplete)
+    // let matrix = []
+    // for(let i=0;i<nums.length;i++){
+    //     matrix[i] = []
+    //     for(let j=0;j<nums.length;j++){
+    //         matrix[i][j] = nums[i]*nums[j]
+    //     }
+    // }
+
+    // console.log(matrix)
+
+    // for(let i=0;i<nums.length;i++){
+    //     let j = 0
+    //     while(j<nums.length){
+    //         if(i!==j){
+
+    //         }
+    //     }
+    // }
+    // return []
+
 };
 
 const nums= [1,2,3,4]
