@@ -4,7 +4,7 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var productExceptSelf = function(nums) {
+var productExceptSelf = function (nums) {
     // Approach 1: Using division (Doesn't work when a number is zero)
     // let product = 1
     // for(let i=0;i<nums.length;i++){
@@ -39,7 +39,35 @@ var productExceptSelf = function(nums) {
     // }
     // return []
 
+    // Approach 3: Prefix and Suffix multiplication
+
+    let leftProd = Array.from(nums, (x) => 1), prefix = 1
+    let rightProd = Array.from(nums, x => 1), suffix = 1
+    const n = nums.length
+    // Prefix multiply
+    for (let i = 1; i < nums.length; i++) {
+        leftProd[i] = nums[i-1] * leftProd[i - 1]
+    }
+
+    // Suffix multiply
+    for (i = n - 2; i >= 0; i--) {
+        rightProd[i] = nums[i+1] * rightProd[i + 1]
+    }
+
+    console.log(leftProd)
+    console.log(rightProd)
+
+    let ans = Array.from(nums, (x) => 1)
+    for(let i=0;i<nums.length;i++){
+        ans[i] = leftProd[i] * rightProd[i]
+    }
+
+    return ans
+
+    //Approach 4: Better usage of memory
+    
+
 };
 
-const nums= [1,2,3,4]
+const nums = [1, 2, 3, 4]
 console.log(productExceptSelf(nums))
